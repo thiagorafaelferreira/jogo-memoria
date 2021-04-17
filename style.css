@@ -1,0 +1,104 @@
+
+body {
+  background-image: url('fundo-games.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.message {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 50px;
+  height: 60px;
+  background-color: orange;
+  padding: 10px;
+  width: 300px;
+  border-radius: 10px;
+}
+
+.points {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  color: white;
+  font-size: 50px;
+  height: 60px;
+  background-color: dodgerblue;
+  padding: 10px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.button-start > img {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+}
+
+/* .button-start > img:hover {
+  border: 3px orange solid;
+  border-radius: 50px;
+} */
+
+.button-start {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.cristal > div {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.cristal > div:active {
+  background-color: gray;
+}
+
+.cristal > div:hover {
+  border: orange 1px solid;
+  width: 148px;
+  height: 148px;
+}
+
+.cristal-pink {
+  background-color: pink;
+}
+
+.cristal-green {
+  background-color: greenyellow;
+}
+
+.cristal-blue {
+  background-color: dodgerblue;
+}
+
+.cristal-orange {
+  background-color: orange;
+}
+
+.cristal-plum {
+  background-color: plum;
+}
+
+.cristal-grey {
+  background-color: #a7adbb;
+}
+
+.cristal > div > img {
+  width: 100%;
+  height: 100%;
+}

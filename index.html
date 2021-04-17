@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercício memória</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="script.js" ></script>
+  </head>
+  <body style="text-align: center;" >
+    <div class="button-start">
+      <img onclick="start();" src="button-orange.png" />
+    </div>
+    <div id="cristal-board" class="cristal">
+      <div onclick="clickCristal('cristal-pink');" name="cristal-pink" class="cristal-pink" >
+        <img src="cristal-rosa.png" />
+      </div>
+      <div onclick="clickCristal('cristal-blue');" name="cristal-blue" class="cristal-blue" >
+        <img src="cristal-azul.png" />
+      </div>
+      <div onclick="clickCristal('cristal-green');" name="cristal-green" class="cristal-green" >
+        <img src="cristal-verde.png" />
+      </div>
+      <div onclick="clickCristal('cristal-orange');" name="cristal-orange" class="cristal-orange" >
+        <img src="cristal-laranja.png" />
+      </div>
+      <div onclick="clickCristal('cristal-plum');" name="cristal-plum" class="cristal-plum" >
+        <img src="cristal-roxo.png" />
+      </div>
+      <div onclick="clickCristal('cristal-grey');" name="cristal-grey" class="cristal-grey" >
+        <img src="cristal-cinza.png" />
+      </div>
+    </div>
+    <div>
+      <h2 class="message"></h2>
+    </div>
+    <div>
+      <h2 class="points"></h2>
+    </div>
+  </body>
+</html>
+  
