@@ -5,75 +5,81 @@ let timeIntervalCallCristal = 1000;
 let timeIntervalClearCristals = timeIntervalCallCristal + 500;
 let timeIntervalCallGame = timeIntervalClearCristals + 500;
 let level = 1;
-let vezes = 0;
-let posicaoTestada = 0;
-let pontuacao = 0;
-let bloqueiaClick = true;
+let times = 0;
+let testPosition = 0;
+let points = 0;
+let blockClick = true;
 let elementSelectedGlobal;
 let cristalSelectedGlobal;
 
+const numberColor = {
+  1: "cristal-green",
+  2: "cristal-blue",
+  3: "cristal-pink",
+  4: "cristal-grey",
+  5: "cristal-orange",
+  6: "cristal-plum"
+}
+
 const start = () => {
   level = 1;
-  vezes = 0;
-  pontuacao = 0;
-  bloqueiaClick = false;
+  times = 0;
+  points = 0;
+  blockClick = false;
   cristalsShowed = Array();
   cleanSelection();
   game(0);
 }
 
+const subiuDelevel = () => level++;
+const fillMessage = (message) => document.getElementsByClassName("message")[0].innerHTML = message;
+const fillPoints = () => { points += 10; document.getElementsByClassName("points")[0].innerHTML = points; }
+
 const clickCristal = (cristalSelected) => {
-  if(!bloqueiaClick) {
+  if(!blockClick) {
     cristalSelectedGlobal = cristalSelected;
-    if(cristalSelected == cristalsShowed[posicaoTestada]) {
-      if(posicaoTestada + 1 < level) {
-        posicaoTestada++;
+    if(cristalSelected == cristalsShowed[testPosition]) {
+      if(testPosition + 1 < level) {
+        testPosition++;
       } else {
-        var div = document.getElementsByClassName("message");
-        div[0].innerHTML = "Computador";
-        bloqueiaClick = true;
-        posicaoTestada = 0;
-        vezes = 0;
-        level++;
+        fillMessage("Computador");
+        blockClick = true;
+        testPosition = 0;
+        times = 0;
+        subiuDelevel();
         callGame();
       }
-      pontuacao += 10;
-      var div = document.getElementsByClassName("points");
-      div[0].innerHTML = pontuacao;
+      fillPoints();
     } else {
       allSelection();
-      bloqueiaClick = true;
+      blockClick = true;
       alert("Voce errou, jogue novamente");
     }
   }
 } 
 
+const gameSteps = () => {
+  clearCristals();
+  callGame();
+  times++;
+}
+
 const game = () => {
   var div = document.getElementsByClassName("message");
-  if(vezes < cristalsShowed.length) {
-    div[0].innerHTML = "Computador";
-    console.log("menor");
-    callCristals(cristalsShowed[vezes]);
-    clearCristals();
-    callGame();
-    vezes++;
+  fillMessage("Computador");
+  if(times < cristalsShowed.length) {
+    callCristals(cristalsShowed[times]);
+    gameSteps();
   } else {
-    console.log("nao menor");
-    if(vezes < level) {
-      div[0].innerHTML = "Computador";
+    if(times < level) {
       callNewCristals();
-      clearCristals();
-      callGame();
-      vezes++;
+      gameSteps();
     } else {
-      bloqueiaClick = false;
-      console.log(div);
-      div[0].innerHTML = "Você";
+      blockClick = false;
+      fillMessage("Você");
     }
   } 
 }
-
-const subiuDelevel = () => level++;
 
 const cleanSelection = () => {
   var div = document.getElementsByClassName("cristal");
@@ -108,39 +114,7 @@ const allSelection = () => {
   }
 }
 
-const chooseNewCristalToShow = () => {
-  let cristalNumber = Math.floor((Math.random() * amountCristal) + 1);
-  let element = null;
-  switch(cristalNumber) {
-    case 1: 
-      element = document.querySelector('[name="cristal-green"]');
-      element.classList.add("cristal-green");
-      break;
-    case 2:
-      element = document.querySelector('[name="cristal-blue"]');
-      element.classList.add("cristal-blue");
-      break;
-    case 3:
-      element = document.querySelector('[name="cristal-pink"]');
-      element.classList.add("cristal-pink");
-      break;
-    case 4:
-      element = document.querySelector('[name="cristal-grey"]');
-      element.classList.add("cristal-grey");
-      break;
-    case 5:
-      element = document.querySelector('[name="cristal-orange"]');
-      element.classList.add("cristal-orange");
-      break;
-    case 6:
-      element = document.querySelector('[name="cristal-plum"]');
-      element.classList.add("cristal-plum");
-      break;
-  }
-  adicionaCristalNaLista(element);
-}
-
-const chooseCristalToShow = (cristalSelected) => {
+const cristalSelection = (cristalSelected) => {
   let element = null;
   switch(cristalSelected) {
     case "cristal-green": 
@@ -168,6 +142,17 @@ const chooseCristalToShow = (cristalSelected) => {
       element.classList.add("cristal-plum");
       break;
   }
+  return element;
+}
+
+const chooseNewCristalToShow = () => {
+  let cristalNumber = Math.floor((Math.random() * amountCristal) + 1);
+  let element = cristalSelection(numberColor[cristalNumber]);
+  adicionaCristalNaLista(element);
+}
+
+const chooseCristalToShow = (cristalSelected) => {
+  cristalSelection(cristalSelected);
 }
 
 const adicionaCristalNaLista = (element) => {
